@@ -10,14 +10,21 @@ function App() {
       .then(x => x.json().then(res => setTemplates(res.data.memes)))
   }, [])
 
-  return <div style={{ textAlign: "center" }}>
-    {template && <Meme template={template}/>}
-    {!template && templates.map(template => {
-      return (
-        <Meme template={template} onClick={() => setTemplate(template)}/>
-      )
-    })}
-  </div>
+  return (
+    <div style={{ textAlign: "center" }}>
+      {template && <Meme template={template}/>}
+      {!template && (
+        <>
+        <h1>Pick a Template</h1>
+          {templates.map(template => {
+            return (
+              <Meme template={template} onClick={() => setTemplate(template)}/>
+            )
+          })}
+        </>
+      )}
+    </div>
+  )
 }
 
 export default App;
